@@ -51,3 +51,8 @@ No environment variables are required for the basic local counter.
 - https://www.hevcjs.dev/
 
 The app pins the player plugin dependencies and copies the WASM/worker assets locally for deployment. Browser fallback requires WebAssembly, HTTPS/localhost, and a supported WebCodecs H.264 encoder. For HLS/DASH sources, the media host must permit cross-origin access.
+
+
+## Perbaikan build Vercel (TypeScript)
+
+Versi ini memperbaiki tiga error build: impor `dashjs` memakai module namespace sesuai tipe paket, variabel `activeBatchNumber` yang tidak digunakan dihapus, dan impor `React` yang tidak diperlukan di `src/main.tsx` dihapus. Setelah mengganti file, commit/push ke GitHub agar Vercel menjalankan build ulang.

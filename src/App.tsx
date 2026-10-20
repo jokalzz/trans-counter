@@ -186,7 +186,7 @@ function App() {
       if (sourceMode === 'dash') {
         setNotice({ kind: 'info', text: 'Menyiapkan MPEG-DASH + hevc.js. Segmen video diproses di browser.' });
         try {
-          const [{ default: dashjs }, { attachHevcSupport }] = await Promise.all([
+          const [dashjs, { attachHevcSupport }] = await Promise.all([
             import('dashjs'),
             import('@hevcjs/dashjs-plugin'),
           ]);
@@ -449,7 +449,6 @@ function App() {
 
   const exportAll = () => downloadCsv(makeExportRows(), `${slug(currentFileName || 'traffic-count')}-semua-interval.csv`);
   const completedBatches = useMemo(() => Math.floor(rows.length / batchSize), [rows.length, batchSize]);
-  const activeBatchNumber = Math.floor(activeInterval / batchSize) + 1;
 
   const exportBatch = (batchIndex: number) => {
     const sortedRows = [...rows].sort((a, b) => a.index - b.index);
